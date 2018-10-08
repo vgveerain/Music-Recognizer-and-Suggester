@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -26,7 +27,7 @@ public class MainActual extends AppCompatActivity implements IACRCloudListener {
     private ACRCloudClient mClient;
     private ACRCloudConfig mConfig;
 
-    private APIresponse apiResponse;
+//    private APIresponse apiResponse;
 
     private boolean mProcessing = false;
     private boolean initState = false;
@@ -61,6 +62,7 @@ public class MainActual extends AppCompatActivity implements IACRCloudListener {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startButton.startAnimation(AnimationUtils.loadAnimation(getBaseContext(), R.anim.rotate));
                 start();
             }
         });
@@ -154,6 +156,7 @@ public class MainActual extends AppCompatActivity implements IACRCloudListener {
 
         try {
             JSONObject j = new JSONObject(result);
+            Log.e("TAG2",result);
             JSONObject j1 = j.getJSONObject("status");
             int j2 = j1.getInt("code");
             if(j2 == 0){
@@ -213,7 +216,7 @@ public class MainActual extends AppCompatActivity implements IACRCloudListener {
             e.printStackTrace();
         }
 
-        Intent intent = new Intent(this, resultActivity.class);
+        Intent intent = new Intent(this, ScrollingActivity.class);
         intent.putExtra("title", t);
         intent.putExtra("artist", a);
         intent.putExtra("album", al);

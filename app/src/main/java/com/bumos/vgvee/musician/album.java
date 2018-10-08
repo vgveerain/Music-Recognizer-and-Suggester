@@ -1,50 +1,19 @@
 package com.bumos.vgvee.musician;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import java.util.ArrayList;
 
-public class album implements Parcelable {
-    String name;
+public class album {
+    ArrayList<image> image;
 
-    public String getName() {
-        return name;
+    public album(ArrayList<com.bumos.vgvee.musician.image> image) {
+        this.image = image;
     }
 
-    public album(String name) {
-        this.name = name;
+    public ArrayList<com.bumos.vgvee.musician.image> getImage() {
+        return image;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public static Creator<album> getCREATOR() {
-        return CREATOR;
-    }
-
-    protected album(Parcel in) {
-        name = in.readString();
-    }
-
-    public static final Creator<album> CREATOR = new Creator<album>() {
-        @Override
-        public album createFromParcel(Parcel in) {
-            return new album(in);
-        }
-
-        @Override
-        public album[] newArray(int size) {
-            return new album[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
+    public void setImage(ArrayList<com.bumos.vgvee.musician.image> image) {
+        this.image = image;
     }
 }
