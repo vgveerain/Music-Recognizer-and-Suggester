@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements IACRCloudListener
     private ACRCloudClient mClient;
     private ACRCloudConfig mConfig;
 
-    private APIresponse apiResponse;
+//    private APIresponse apiResponse;
 
     private TextView mVolume, mResult, tv_time;
 
@@ -170,8 +170,8 @@ public class MainActivity extends AppCompatActivity implements IACRCloudListener
 
         String tres = "\n";
 
-        Gson gson = new Gson();
-        apiResponse = gson.fromJson(result, APIresponse.class);
+//        Gson gson = new Gson();
+//        apiResponse = gson.fromJson(result, APIresponse.class);
 
         try {
             JSONObject j = new JSONObject(result);
