@@ -9,9 +9,11 @@
     tools:showIn="@layout/activity_scrolling">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/infoTv"
+        android:textSize="30sp"
         android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
+        android:text="" />
 
 </android.support.v4.widget.NestedScrollView>

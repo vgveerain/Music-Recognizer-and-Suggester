@@ -2,6 +2,7 @@ package com.bumos.vgvee.musician;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
@@ -32,6 +34,8 @@ import okio.Utf8;
 public class ScrollingActivity extends AppCompatActivity {
 
     ImageView iv ;
+    TextView infoTv;
+    AppBarLayout applay;
     ArrayList<String> arrayList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +43,15 @@ public class ScrollingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        applay=findViewById(R.id.applay);
+        infoTv=findViewById(R.id.infoTv);
         Intent intent = getIntent();
         String a = intent.getExtras().getString("artist");
         String t = intent.getExtras().getString("title");
         String al = intent.getExtras().getString("album");
+        getSupportActionBar().setTitle(t);
+        String s= "Artist: "+a+"\nTitle: "+t+"\nAlbum: "+al;
+        infoTv.setText(s);
         Log.e("TAG",al+a);
         try {
             a=URLEncoder.encode(a,"UTF-8");
@@ -80,14 +89,23 @@ public class ScrollingActivity extends AppCompatActivity {
 //                Log.e("TAG",images.get(1).getText());
                 try {
                     JSONObject j = new JSONObject(result);
-                    JSONArray jsonArray=j.getJSONArray("image");
-                    for(int i=0;i<jsonArray.length();i++){
+                    JSONObject jalbum=j.getJSONObject("album");
+                    JSONArray jimage=jalbum.getJSONArray("image");
+                    for(int i=0;i<jimage.length();i++){
+                        JSONObject im = jimage.getJSONObject(i);
+                        String t = im.getString("#text");
+                        arrayList.add(t);
 
-                        JSONObject object=jsonArray.getJSONObject(i);
-                        arrayList.add(object.getString("#text"));
-
-                        Log.e("TAG3",arrayList.get(1));
                     }
+                    Log.e("TAG Arraylist",arrayList.get(1));
+                    ScrollingActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Picasso.get().load(arrayList.get(2)).into(iv);
+                        }
+                    });
+//                    Picasso.get().load(arrayList.get(1)).into(iv);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

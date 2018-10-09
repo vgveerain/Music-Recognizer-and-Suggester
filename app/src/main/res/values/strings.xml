@@ -8,7 +8,7 @@
     <string name="stop">stop record and recognize(humming)</string>
     <string name="recording">recording</string>
     <string name="volume">volume:</string>
-    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="title_activity_scrolling"></string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
