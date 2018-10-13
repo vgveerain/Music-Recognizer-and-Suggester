@@ -149,14 +149,14 @@ public class MainActual extends AppCompatActivity implements IACRCloudListener {
 //        }else{
 //            Toast.makeText(this, "No Result Found, Retry?", Toast.LENGTH_SHORT).show();
 //        }
-
+        startButton.clearAnimation();
         String a = new String();
         String t = new String();
         String al = new String();
 
         try {
             JSONObject j = new JSONObject(result);
-            Log.e("TAG2",result);
+            Log.e("TAG ACR",result);
             JSONObject j1 = j.getJSONObject("status");
             int j2 = j1.getInt("code");
             if(j2 == 0){
