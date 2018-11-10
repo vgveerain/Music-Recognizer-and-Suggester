@@ -81,12 +81,7 @@ public class ScrollingActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 String result = response.body().string();
                 Log.e("TAG",result);
-//                Gson gson=new Gson();
-//                ImageResponse imageResponse=gson.fromJson(result,ImageResponse.class);
-////                Log.e("TAG",imageResponse.getAlbum().toString());
-//
-//                ArrayList<image> images=imageResponse.album.getImage();
-//                Log.e("TAG",images.get(1).getText());
+               
                 try {
                     JSONObject j = new JSONObject(result);
                     JSONObject jalbum=j.getJSONObject("album");
